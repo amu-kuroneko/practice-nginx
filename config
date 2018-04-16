@@ -1,0 +1,21 @@
+ngx_addon_name=ngx_http_id_test_module
+
+HEADERS_MORE_SRCS=" \
+  $ngx_addon_dir/ngx_http_id_test_module.cc \
+"
+
+HEADERS_MORE_DEPS=" \
+"
+
+if test -n "$ngx_module_link"; then
+    ngx_module_type=HTTP
+    ngx_module_name=ngx_http_id_test_module
+    ngx_module_srcs="$HEADERS_MORE_SRCS"
+    ngx_module_deps="$HEADERS_MORE_DEPS"
+
+    . auto/module
+else
+    HTTP_MODULES="$HTTP_MODULES ngx_http_hello_world_module"
+    NGX_ADDON_SRCS="$NGX_ADDON_SRCS $ngx_addon_dir/ngx_http_hello_world_module.c"
+    NGX_ADDON_DEPS="$NGX_ADDON_DEPS $HEADERS_MORE_DEPS"
+fi
